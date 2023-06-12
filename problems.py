@@ -1,6 +1,7 @@
 import os
 from typing import List, NamedTuple, Optional
 import yaml
+from joblib import Parallel, delayed
 
 from run_solutions import (
     LanguageSolution,
@@ -119,7 +120,6 @@ def read_problems(problems_folder: str) -> List[Problem]:
 
 def process_problem(problem: Problem) -> CheckedProblem:
     samples_length = len(problem.sample_paths)
-    secrets_length = len(problem.secret_paths)
 
     paths_joined = problem.sample_paths + problem.secret_paths
 
@@ -140,4 +140,6 @@ def process_problem(problem: Problem) -> CheckedProblem:
 
 def read_and_process_problems(problems_folder: str) -> List[CheckedProblem]:
     problems = read_problems(problems_folder)
-    return [process_problem(problem) for problem in problems]
+    return Parallel(n_jobs=10)(
+        delayed(process_problem)(problem) for problem in problems
+    )
