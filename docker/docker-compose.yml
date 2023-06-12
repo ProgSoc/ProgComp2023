@@ -1,0 +1,56 @@
+version: "3.9"
+
+networks:
+  domjudge:
+    name: domjudge
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - domjudge
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=domjudge
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=domjudge
+    command: --max-connections=100
+
+  domserver:
+    container_name: domserver
+    image: domjudge/domserver:latest
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - domjudge
+    ports:
+      - 12345:80
+    depends_on:
+      - mariadb
+    environment:
+      - CONTAINER_TIMEZONE=Australia/Sydney
+      - MYSQL_HOST=mariadb
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=domjudge
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=domjudge
+
+  judgehost-0:
+    container_name: judgehost-0
+    image: domjudge/judgehost:latest
+    privileged: true
+    hostname: judgedaemon-0
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - domjudge
+    depends_on:
+      - domserver
+    environment:
+      - DAEMON_ID=0
+      - JUDGEDAEMON_PASSWORD=password
