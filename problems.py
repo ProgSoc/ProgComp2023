@@ -44,9 +44,9 @@ def load_problem_metadata_file(file_path: str) -> ProblemData:
 
 
 def read_problem(folder_path: str) -> Problem:
-    problem_yaml_path = os.path.join(folder_path, "problem.yaml")
+    problem_yaml_path = os.path.join(folder_path, "problem.yml")
     if not os.path.isfile(problem_yaml_path):
-        raise Exception(f"Problem {folder_path} does not have a problem.yaml file")
+        raise Exception(f"Problem {folder_path} does not have a problem.yml file")
 
     problem_data = load_problem_metadata_file(problem_yaml_path)
 
@@ -110,6 +110,8 @@ def sort_solutions(solutions: List[LanguageSolution]) -> List[LanguageSolution]:
 def read_problems(problems_folder: str) -> List[Problem]:
     problems = []
     for folder_name in os.listdir(problems_folder):
+        if folder_name.startswith("_"):
+            continue
         problem_path = os.path.join(problems_folder, folder_name)
         if not os.path.isdir(problem_path):
             continue
