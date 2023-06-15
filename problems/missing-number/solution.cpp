@@ -4,12 +4,14 @@
 
 using namespace std;
 
-int findMissingNumber(const vector<int>& arr) {
+int findMissingNumber(const vector<int> &arr)
+{
     int n = arr.size() + 1;
     int totalSum = (n * (n + 1)) / 2;
 
     int arraySum = 0;
-    for (int num : arr) {
+    for (int num : arr)
+    {
         arraySum += num;
     }
 
@@ -17,14 +19,16 @@ int findMissingNumber(const vector<int>& arr) {
     return missingNumber;
 }
 
-int main() {
+int main()
+{
     string input;
     getline(cin, input);
 
     vector<int> array;
     stringstream ss(input);
     string num;
-    while (getline(ss, num, ',')) {
+    while (getline(ss, num, ','))
+    {
         array.push_back(stoi(num));
     }
 

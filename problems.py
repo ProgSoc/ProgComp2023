@@ -71,11 +71,11 @@ def read_problem(folder_path: str) -> Problem:
 
     sample_paths = [
         os.path.join(folder_path, "samples", filename)
-        for filename in os.listdir(os.path.join(folder_path, "samples"))
+        for filename in sorted(os.listdir(os.path.join(folder_path, "samples")))
     ]
     secret_paths = [
         os.path.join(folder_path, "secrets", filename)
-        for filename in os.listdir(os.path.join(folder_path, "secrets"))
+        for filename in sorted(os.listdir(os.path.join(folder_path, "secrets")))
     ]
 
     foldername = os.path.basename(folder_path)

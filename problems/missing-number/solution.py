@@ -5,8 +5,9 @@ def find_missing_number(arr):
     missing_number = total_sum - array_sum
     return missing_number
 
+
 # Example usage
 array = input().split(",")
-array = [ int(x) for x in array ]
+array = [int(x) for x in array]
 missing_number = find_missing_number(array)
 print(missing_number)
