@@ -11,3 +11,6 @@ def broken_sequence(wall: str) -> int:
 
     return count
 
+
+text = input()
+print(broken_sequence(text))

@@ -56,7 +56,7 @@ public class solution {
 
         Point result = trilaterate(p1, p2, p3);
 
-        System.out.printf("%.2f %.2f%n", result.x, result.y);
+        System.out.println((int)result.x + " " + (int)result.y);
     }
 
     private static Coordinate readCoordinate(Scanner scanner) {

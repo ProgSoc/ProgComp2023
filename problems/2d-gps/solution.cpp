@@ -58,8 +58,7 @@ int main()
     Point result = trilaterate(p1, p2, p3);
 
     std::cout << std::fixed;
-    std::cout.precision(2);
-    std::cout << result.x << " " << result.y << std::endl;
+    std::cout << (int)result.x << " " << (int)result.y << std::endl;
 
     return 0;
 }

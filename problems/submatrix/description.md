@@ -18,6 +18,6 @@ Assume `N` is between 1 and 10, inclusive.
 
 ## Output format
 
-Output the size of the largest square.
+On the first line, print the size of the largest square.
 
-On a new line, output the top-left coordinate of the square in the image with the form `row column`
+On the second line, print the top-left x/y coordinate of the square in the image

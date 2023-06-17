@@ -2,8 +2,7 @@ import java.util.Scanner;
 
 public class solution {
     public static String getGreeting(String name) {
-        String capitalizedName = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-        return "Hello " + capitalizedName + "!";
+        return "Hello " + name + "!";
     }
 
     public static void main(String[] args) {

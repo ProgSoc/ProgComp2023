@@ -39,4 +39,4 @@ p3 = read_coord()
 
 x, y = trilaterate(p1, p2, p3)
 
-print(f"{x:.2f} {y:.2f}")
+print(f"{int(x)} {int(y)}")

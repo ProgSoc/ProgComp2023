@@ -1,6 +1,5 @@
 def get_greeting(name: str):
-    capitalized_name = name.capitalize()
-    return f"Hello {capitalized_name}!"
+    return f"Hello {name}!"
 
 
 # Read the input

@@ -1,45 +1,30 @@
 #include <iostream>
 #include <vector>
-#include <sstream>
-
 using namespace std;
+
+pair<pair<int, int>, int> findLargestSquareSubMatrix(vector<vector<int>>& matrix) {
+    // Your solution goes here
+    return make_pair(make_pair(x, y), max_size);
+}
 
 vector<vector<int>> parseMatrix() {
     int size;
     cin >> size;
-    cin.ignore(); // Ignore the newline character
-
-    vector<vector<int>> matrix;
+    vector<vector<int>> matrix(size, vector<int>(size));
 
     for (int i = 0; i < size; i++) {
-        string line;
-        getline(cin, line);
-
-        if (line.empty()) {
-            break;
+        for (int j = 0; j < size; j++) {
+            cin >> matrix[i][j];
         }
-
-        stringstream ss(line);
-        vector<int> row;
-
-        int num;
-        while (ss >> num) {
-            row.push_back(num);
-        }
-
-        matrix.push_back(row);
     }
 
     return matrix;
 }
 
-void binarySubmatrix(vector<vector<int>>& image) {
-    // Your solution goes here
-}
-
 int main() {
     vector<vector<int>> matrix = parseMatrix();
-    binarySubmatrix(matrix);
-
+    pair<pair<int, int>, int> answer = findLargestSquareSubMatrix(matrix);
+    cout << answer.second << endl;
+    cout << answer.first.first << " " << answer.first.second << endl;
     return 0;
 }

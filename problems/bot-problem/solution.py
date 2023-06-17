@@ -1,17 +1,13 @@
 import re
 
-# Find how many usernames will be provided
-username_count = int(input())
 
-spam_bot_usernames = []
-for i in range(username_count):
-    username = input()
-
-    # Check if the username is a spam bot
+def is_spam_bot(username: str) -> bool:
     regex = r"^[A-Z][a-z]+[A-Z][a-z]+\d{3}$"
-    if re.search(regex, username):
-        spam_bot_usernames.append(username)
+    return bool(re.search(regex, username))
 
-# Print the spam bot usernames
-for username in spam_bot_usernames:
-    print(username)
+
+username_count = int(input())
+usernames = [input() for _ in range(username_count)]
+for username in usernames:
+    if is_spam_bot(username):
+        print(username)

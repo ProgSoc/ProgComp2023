@@ -1,73 +1,57 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class solution {
     public static void main(String[] args) {
         int[][] matrix = parseMatrix();
-        int[] answer = findLargestSquareSubmatrix(matrix);
-        System.out.println(answer[2]);
-        System.out.println(answer[0] + " " + answer[1]);
+        int[][] answer = findLargestSquareSubMatrix(matrix);
+        System.out.println(answer[1][0]);
+        System.out.println(answer[0][0] + " " + answer[0][1]);
     }
 
-    public static int[][] parseMatrix() {
-        Scanner scanner = new Scanner(System.in);
-        int size = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
-
-        List<int[]> matrixList = new ArrayList<>();
-
-        for (int i = 0; i < size; i++) {
-            String line = scanner.nextLine();
-            if (line.isEmpty()) {
-                break; // Stop reading if an empty line is encountered
-            }
-
-            String[] elements = line.split(" ");
-            int[] row = new int[elements.length];
-
-            for (int j = 0; j < elements.length; j++) {
-                row[j] = Integer.parseInt(elements[j]);
-            }
-
-            matrixList.add(row);
-        }
-
-        int[][] matrix = new int[matrixList.size()][];
-        for (int i = 0; i < matrixList.size(); i++) {
-            matrix[i] = matrixList.get(i);
-        }
-
-        return matrix;
-    }
-
-    public static int[] findLargestSquareSubmatrix(int[][] matrix) {
+    public static int[][] findLargestSquareSubMatrix(int[][] matrix) {
         int rows = matrix.length;
         if (rows == 0) {
-            return new int[]{0, 0, 0};
+            return new int[][]{{0, 0}, {0}};
         }
+
         int cols = matrix[0].length;
 
         int[][] dp = new int[rows + 1][cols + 1];
-        int maxSize = 0;
-        int maxPosI = 0;
-        int maxPosJ = 0;
+        int max_size = 0;
+        int max_pos_i = 0;
+        int max_pos_j = 0;
 
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= cols; j++) {
                 if (matrix[i - 1][j - 1] == 1) {
-                    dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i][j - 1], dp[i - 1][j])) + 1;
-                    if (maxSize < dp[i][j]) {
-                        maxSize = dp[i][j];
-                        maxPosI = i;
-                        maxPosJ = j;
+                    dp[i][j] = Math.min(Math.min(dp[i - 1][j - 1], dp[i][j - 1]), dp[i - 1][j]) + 1;
+                    if (max_size < dp[i][j]) {
+                        max_size = dp[i][j];
+                        max_pos_i = i;
+                        max_pos_j = j;
                     }
                 }
             }
         }
 
-        int iPos = maxPosI - maxSize;
-        int jPos = maxPosJ - maxSize;
-        return new int[]{iPos, jPos, maxSize};
+        int i_pos = max_pos_i - max_size;
+        int j_pos = max_pos_j - max_size;
+        return new int[][]{{i_pos, j_pos}, {max_size}};
+    }
+
+    public static int[][] parseMatrix() {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        sc.nextLine(); // Consume newline character
+        int[][] matrix = new int[size][size];
+
+        for (int i = 0; i < size; i++) {
+            String[] line = sc.nextLine().split(" ");
+            for (int j = 0; j < size; j++) {
+                matrix[i][j] = Integer.parseInt(line[j]);
+            }
+        }
+
+        return matrix;
     }
 }

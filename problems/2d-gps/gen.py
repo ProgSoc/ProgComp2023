@@ -30,7 +30,7 @@ class PerfectTriangle(NamedTuple):
         return x
 
     def get_random_mult(self):
-        max_dist = 100
+        max_dist = 10000
         max_mult = max_dist / self.distance
         mult = int(max(random.random() * max_mult, 1))
         return self.get_mult(mult)
@@ -49,8 +49,8 @@ perfect_tris = [
     PerfectTriangle(7, 24, 25),
 ]
 
-rand_x = int(random.random() * 100)
-rand_y = int(random.random() * 100)
+rand_x = int(random.random() * 10000)
+rand_y = int(random.random() * 10000)
 
 
 def print_tri(tri: PerfectTriangle):
