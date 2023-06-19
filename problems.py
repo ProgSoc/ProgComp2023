@@ -109,7 +109,8 @@ def sort_solutions(solutions: List[LanguageSolution]) -> List[LanguageSolution]:
 
 def read_problems(problems_folder: str) -> List[Problem]:
     problems = []
-    for folder_name in os.listdir(problems_folder):
+    folders = sorted(os.listdir(problems_folder))
+    for folder_name in folders:
         if folder_name.startswith("_"):
             continue
         problem_path = os.path.join(problems_folder, folder_name)

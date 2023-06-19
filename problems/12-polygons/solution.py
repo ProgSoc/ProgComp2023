@@ -1,5 +1,7 @@
 from typing import NamedTuple
 
+import numpy
+
 
 class Point(NamedTuple):
     x: float

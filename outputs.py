@@ -41,10 +41,10 @@ timelimit = {problem.data.timelimit}
                     f.write(case.output)
 
         # Write samples
-        write_test_cases(f"{folder}/data/samples", problem.samples)
+        write_test_cases(f"{folder}/data/sample", problem.samples)
 
         # Write secrets
-        write_test_cases(f"{folder}/data/secrets", problem.secrets)
+        write_test_cases(f"{folder}/data/secret", problem.secrets)
 
         # Zip the contents of the folder and move it to ./build/problem_zips
         os.system(

@@ -67,6 +67,8 @@ def run_languages_solution(solution: LanguageSolution, inputs: List[str]) -> Lis
             return run_java_solution(solution.solution_path, inputs)
         case "cpp":
             return run_cpp_solution(solution.solution_path, inputs)
+        case "rs":
+            return run_rust_solution(solution.solution_path, inputs)
         case _:
             raise Exception(f"Unknown language {solution.kind}")
 
@@ -110,6 +112,23 @@ def run_cpp_solution(solution_path: str, inputs: List[str]) -> List[str]:
         with open(cpp_file_path, "w") as f:
             f.write(cpp_code)
         subprocess.check_call(["g++", "-o", f"{temp_dir}/solution", cpp_file_path])
+
+        def run_single(input: str) -> str:
+            return subprocess.check_output(
+                [f"{temp_dir}/solution"], input=input, encoding="utf-8"
+            )
+
+        return [run_single(input) for input in inputs]
+
+
+def run_rust_solution(solution_path: str, inputs: List[str]) -> List[str]:
+    with TemporaryDirectory() as temp_dir:
+        rust_file_path = f"{temp_dir}/solution.rs"
+        with open(solution_path) as f:
+            rust_code = f.read()
+        with open(rust_file_path, "w") as f:
+            f.write(rust_code)
+        subprocess.check_call(["rustc", "-o", f"{temp_dir}/solution", rust_file_path])
 
         def run_single(input: str) -> str:
             return subprocess.check_output(
