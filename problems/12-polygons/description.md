@@ -20,7 +20,7 @@ However, to have an effective way to convert the slice into a path, you need to 
 
 You have 2 polygons A and B, which are both simple polygons. For now, you assume that the polygons are:
 
-- Convex (there can only be 1 intersection between 2 convex polygons)
+- Convex
 - All points are oriented clockwise (each point is in a clockwise direction from the previous point)
 - Definitely overlapping
 - There is only 2 line intersections in each test case, to make this easier. A polygon's line goes into the other one and then exits.
@@ -42,8 +42,6 @@ Your task is to find the union of these 2 polygons. For the tests, you should ju
 A convex polygon is a polygon that has no concave angles. In other words, if you take any 2 points on the polygon, the line segment between them will be contained within the polygon.
 
 As you can see in the below image, if we draw a line between the 2 bottom points of the concave polygon, the line segment will be outside of the polygon.
-
-There can only be 1 intersection between 2 convex polygons, while a concave polygon can have multiple complex intersections.
 
 ![Convex polygon](_images/convex.png)
 

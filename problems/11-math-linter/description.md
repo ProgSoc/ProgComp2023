@@ -10,7 +10,7 @@ Anything that is not a valid number and is not a valid operator/parenthese is co
 
 Numbers such as `1.1.1`, `1..1`, `.1` and `1.` are invalid, as are operators such as `++` and `+-`.
 
-The `-` operator can only be used as a binary operator (e.g. `1 - 2`), or as a unary when at the beginning of an expression (e.g. `-1 + 2` or `1 + ( - 2 )`).
+The `-` operator can only be used as a binary operator (e.g. `1 - 2`), or as a unary when at the beginning of an expression (e.g. `- 1 + 2` or `1 + ( - 2 )`).
 
 # Input format
 
